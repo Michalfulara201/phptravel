@@ -1,0 +1,19 @@
+<suite name="Regression Suite" >
+    <parameter name="url" value="https://www.ogame.pl"/>
+    <!--parameter name="login" value="testtesttest@gmail.com"/-->
+    <!--parameter name="password" value="123456789"/-->
+
+
+
+    <test name="AccountTests">
+        <classes>
+            <class name="LoginTests"/>
+            <!--class name="SignUpTests"/-->
+            <!--class name="ForgotPasswordTests"/-->
+            <!--class name="TransferFundsTests"/-->
+            <!--class name="FindTransactionTests"/-->
+
+        </classes>
+    </test>
+
+</suite>
