@@ -9,10 +9,12 @@ import pages.MainPage;
 
 public class LoginAssertion extends MainPage {
 
-    @FindBy(xpath ="//a[@class='menubutton  selected']" )
+    @FindBy(xpath ="//div/h2/span[text()='Zacznij w nowym uniwersum']" )
     private WebElement menuButton;
     @FindBy(xpath = "//div[@class='usernameLoginformError parentFormloginForm formError']")
-    private WebElement loginButtonVisible;
+    private WebElement passwordErrorVisible;
+    @FindBy(xpath = "//div[@class='formErrorContent']")
+    private WebElement loginErrorVisible;
 
     public LoginAssertion(WebDriver driver) {
         super(driver);
@@ -21,10 +23,14 @@ public class LoginAssertion extends MainPage {
     }
 
     public void isUserLoggedIn(){
+        waitForElement();
         Assert.assertTrue(menuButton.isDisplayed());
     }
 
-    public void userNotLoggedwithWrongCredentials(){
-        Assert.assertTrue(loginButtonVisible.isDisplayed());
+    public void userNotLoggedwithWrongPassword(){
+        Assert.assertTrue(passwordErrorVisible.isDisplayed());
+    }
+    public void userNotLoggedwithWrongLoggin(){
+        Assert.assertTrue(loginErrorVisible.isDisplayed());
     }
 }

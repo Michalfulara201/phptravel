@@ -1,5 +1,6 @@
 package pages;
 
+import assertions.LoginAssertion;
 import assertions.RegisterAssertions;
 
 import org.openqa.selenium.By;
@@ -9,12 +10,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.beans.Visibility;
+import java.security.Policy;
+
 public class IndexPage extends MainPage {
 
 
-
-
     public RegisterAssertions registerAssertions;
+    public LoginAssertion loginAssertion;
     private String url;
 
 
@@ -29,12 +32,12 @@ public class IndexPage extends MainPage {
     @FindBy(xpath = "//input[@value='Rejestracja']")
     private WebElement clickRegister;
 
-    @FindBy(xpath = "//input[@id='usernameLogin']")
+    @FindBy(xpath = "//input[@class='js_userName']")
     private WebElement inputLogin;
 
-    @FindBy(xpath ="//input[@id='passwordLogin']")
+    @FindBy(xpath = "//input[@id='passwordLogin']")
     private WebElement inputLoginPassword;
-    @FindBy(xpath = "//a[@id='loginBtn']")
+    @FindBy(xpath = "//a[@href='#login']")
     private WebElement loginButton;
 
     @FindBy(xpath = "//select[@name='uni']")
@@ -42,20 +45,32 @@ public class IndexPage extends MainPage {
 
     @FindBy(xpath = "//input[@value='Zaloguj się']")
     private WebElement clickLoginButtonOnIndexPage;
+    @FindBy(xpath = "//div/a[@href='javascript:;']")
+    private WebElement javaScriptVisible;
+
+    @FindBy(xpath = "//li[@role='tab']")
+    private WebElement selectRegisterButton;
 
 
-
-    public IndexPage(WebDriver driver,String url) {
+    public IndexPage(WebDriver driver, String url) {
         super(driver);
         PageFactory.initElements(driver, this);
         registerAssertions = new RegisterAssertions(driver);
-        this.url=url;
+        loginAssertion = new LoginAssertion(driver);
+        this.url = url;
 
+
+    }
+
+    public IndexPage closeJavaScript() {
+        javaScriptVisible.click();
+        return this;
     }
 
     public IndexPage openOgamePage() {
         driver.get(url);
         waitForPageLoad();
+        javaScriptVisible.click();
         return this;
     }
 
@@ -75,7 +90,8 @@ public class IndexPage extends MainPage {
         serverLists.findElement(By.xpath("//div[contains(@onclick,'" + serverName + "')]")).click();
         return this;
     }
-    public AccountPage clickOnRegisterButton(){
+
+    public AccountPage clickOnRegisterButton() {
         clickRegister.click();
         waitForPageLoad();
         return new AccountPage(driver);
@@ -83,30 +99,40 @@ public class IndexPage extends MainPage {
 
     }
 
-    public IndexPage setYourEmailToLogin(String login){
+    public IndexPage selectRegisterButton() {
+        selectRegisterButton.click();
+        return this;
+    }
+
+    public IndexPage setYourEmailToLogin(String login) {
         inputLogin.sendKeys(login);
         return this;
 
     }
-    public IndexPage setYourPasswordToLogin(String passwordToLogin){
+
+    public IndexPage setYourPasswordToLogin(String passwordToLogin) {
         inputLoginPassword.sendKeys(passwordToLogin);
         return this;
     }
-    public IndexPage loginButtonOnPage(){
+
+    public IndexPage loginButtonOnPage() {
+        waitForPageLoad();
         loginButton.click();
         return this;
     }
 
-    public IndexPage selectServerToLogin(int index){
+    public IndexPage selectServerToLogin(int index) {
         Select severLogin = new Select(serverLoginLists);
         severLogin.selectByIndex(index);
         return this;
     }
 
-    public AccountPage clickLoginInButton(){
+    public AccountPage clickLoginInButton() {
         clickLoginButtonOnIndexPage.click();
+        waitForPageLoad();
         return new AccountPage(driver);
 
     }
+
 
 }

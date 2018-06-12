@@ -14,5 +14,6 @@ public  class AccountPage extends MainPage {
         super(driver);
         registerAssertions = new RegisterAssertions(driver);
         loginAssertion = new LoginAssertion(driver);
+
     }
 }

@@ -1,18 +1,28 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public  class MainPage {
+public class MainPage {
     protected WebDriver driver;
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver,this);
 
+    }
 
+    public void waitForElement(){
+        WebDriverWait waitElement = new WebDriverWait(driver,30);
+        waitElement.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div/h2/span[text()='Zacznij w nowym uniwersum']")));
     }
 
     public boolean waitForPageLoad() {

@@ -11,7 +11,7 @@ import pages.MainPage;
 public class RegisterAssertions extends MainPage {
 
 
-    @FindBy(xpath = "//div[contains(@class,'emailformError')]//div[@class='formErrorContent']")
+    @FindBy(xpath = "//div[@class='formErrorContent']")
     private WebElement userRegistered;
 
     public RegisterAssertions(WebDriver driver) {

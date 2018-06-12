@@ -12,14 +12,14 @@ public class LoginScenario implements Scenario <IndexPage, AccountPage>{
 
     private String login;
     private String password;
-    private int serverNumber;
 
 
 
 
-    public LoginScenario(String login, String password, int serverIndexNumber) {
 
-        this.serverNumber=serverIndexNumber;
+    public LoginScenario(String login, String password) {
+
+
         this.login=login;
         this.password=password;
     }
@@ -32,7 +32,6 @@ public class LoginScenario implements Scenario <IndexPage, AccountPage>{
                 .loginButtonOnPage()
                 .setYourEmailToLogin(login)
                 .setYourPasswordToLogin(password)
-                .selectServerToLogin(serverNumber)
                 .clickLoginInButton();
     }
 }
