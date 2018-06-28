@@ -10,9 +10,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-import java.beans.Visibility;
-import java.security.Policy;
-
 public class IndexPage extends MainPage {
 
 
@@ -91,10 +88,10 @@ public class IndexPage extends MainPage {
         return this;
     }
 
-    public AccountPage clickOnRegisterButton() {
+    public ServersPage clickOnRegisterButton() {
         clickRegister.click();
         waitForPageLoad();
-        return new AccountPage(driver);
+        return new ServersPage(driver);
 
 
     }
@@ -127,10 +124,10 @@ public class IndexPage extends MainPage {
         return this;
     }
 
-    public AccountPage clickLoginInButton() {
+    public ServersPage clickLoginInButton() {
         clickLoginButtonOnIndexPage.click();
         waitForPageLoad();
-        return new AccountPage(driver);
+        return new ServersPage(driver);
 
     }
 

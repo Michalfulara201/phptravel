@@ -1,9 +1,9 @@
 package scenarios;
 
-import pages.AccountPage;
+import pages.ServersPage;
 import pages.IndexPage;
 
-public class RegisterScenario implements Scenario<IndexPage, AccountPage> {
+public class RegisterScenario implements Scenario<IndexPage, ServersPage> {
 
 
     private String login;
@@ -16,7 +16,7 @@ public class RegisterScenario implements Scenario<IndexPage, AccountPage> {
     }
 
     @Override
-    public AccountPage run(IndexPage entry) {
+    public ServersPage run(IndexPage entry) {
         return entry.openOgamePage()
 
                 .setYourEmail(login)
